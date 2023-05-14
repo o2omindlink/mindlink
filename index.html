@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,108 +72,108 @@
                 '매운맛': spicy,
                 '짠맛': salty
             };
+            function main(taste_percentages) {
+                let taste_to_ohang = {
+                    '신맛': '목',
+                    '쓴맛': '화',
+                    '단맛': '토',
+                    '매운맛': '금',
+                    '짠맛': '수'
+                };
 
-        function main(taste_percentages) {
-            let taste_to_ohang = {
-                '신맛': '목',
-                '쓴맛': '화',
-                '단맛': '토',
-                '매운맛': '금',
-                '짠맛': '수'
-            };
+                let mbti_to_ohang = {
+                    'ISTJ': '목', 'ISFJ': '목',
+                    'ESTP': '화', 'ESFP': '화',
+                    'INFJ': '토', 'INTJ': '토',
+                    'ENTP': '금', 'ENFP': '금',
+                    'ISTP': '수', 'ISFP': '수',
+                    'ESTJ': '목', 'ESFJ': '목',
+                    'INFP': '화', 'INTP': '화',
+                    'ENFJ': '토', 'ENTJ': '토'
+                };
 
-            let mbti_to_ohang = {
-                'ISTJ': '목', 'ISFJ': '목',
-                'ESTP': '화', 'ESFP': '화',
-                'INFJ': '토', 'INTJ': '토',
-                'ENTP': '금', 'ENFP': '금',
-                'ISTP': '수', 'ISFP': '수',
-                'ESTJ': '목', 'ESFJ': '목',
-                'INFP': '화', 'INTP': '화',
-                'ENFJ': '토', 'ENTJ': '토'
-            };
+                let mbti_personalities = {
+                    'ISTJ': '검사관', 'ISFJ': '보호자',
+                    'ESTP': '사업가', 'ESFP': '연예인',
+                    'INFJ': '예언가', 'INTJ': '과학자',
+                    'ENTP': '변론가', 'ENFP': '홍보대사',
+                    'ISTP': '백과사전', 'ISFP': '작은 공주',
+                    'ESTJ': '감독관', 'ESFJ': '주부',
+                    'INFP': '시인', 'INTP': '학자',
+                    'ENFJ': '교사', 'ENTJ': '지휘관'
+                };
 
-            let mbti_personalities = {
-                'ISTJ': '검사관', 'ISFJ': '보호자',
-                'ESTP': '사업가', 'ESFP': '연예인',
-                'INFJ': '예언가', 'INTJ': '과학자',
-                'ENTP': '변론가', 'ENFP': '홍보대사',
-                'ISTP': '백과사전', 'ISFP': '작은 공주',
-                'ESTJ': '감독관', 'ESFJ': '주부',
-                'INFP': '시인', 'INTP': '학자',
-                'ENFJ': '교사', 'ENTJ': '지휘관'
-            };
+                let ohang_color_and_food_recommendations = {
+                    '목': {
+                        '색깔': ['녹색', '청록색'],
+                        '음식': ['콩나물', '브로콜리', '아보카도', '무', '시금치', '셀러리']
+                    },
+                    '화': {
+                        '색깔': ['빨간색', '주황색'],
+                        '음식': ['고추', '토마토', '파프리카', '딸기', '적포도', '석류']
+                    },
+                    '토': {
+                        '색깔': ['노란색', '베이지색'],
+                        '음식': ['감자', '고구마', '옥수수', '밤', '호박', '당근']
+                    },
+                    '금': {
+                        '색깔': ['화이트', '금색', '은색'],
+                        '음식': ['바나나', '계란', '닭고기', '토끼고기', '대파', '굴']
+                    },
+                    '수': {
+                        '색깔': ['검은색', '파란색'],
+                        '음식': ['조개', '새우', '생선', '미역', '다시마', '파래']
+                    }
+                };
 
-            let ohang_color_and_food_recommendations = {
-                '목': {
-                    '색깔': ['녹색', '청록색'],
-                    '음식': ['콩나물', '브로콜리', '아보카도', '무', '시금치', '셀러리']
-                },
-                '화': {
-                    '색깔': ['빨간색', '주황색'],
-                    '음식': ['고추', '토마토', '파프리카', '딸기', '적포도', '석류']
-                },
-                '토': {
-                    '색깔': ['노란색', '베이지색'],
-                    '음식': ['감자', '고구마', '옥수수', '밤', '호박', '당근']
-                },
-                '금': {
-                    '색깔': ['화이트', '금색', '은색'],
-                    '음식': ['바나나', '계란', '닭고기', '토끼고기', '대파', '굴']
-                },
-                '수': {
-                    '색깔': ['검은색', '파란색'],
-                    '음식': ['조개', '새우', '생선', '미역', '다시마', '파래']
+                // Calculate taste influences
+                let taste_influences = {};
+                for (let taste in taste_percentages) {
+                    let ohang = taste_to_ohang[taste];
+                    if (ohang in taste_influences) {
+                        taste_influences[ohang] += taste_percentages[taste];
+                    } else {
+                        taste_influences[ohang] = taste_percentages[taste];
+                    }
                 }
-            };
 
-            // Calculate taste influences
-            let taste_influences = {};
-            for (let taste in taste_percentages) {
-                let ohang = taste_to_ohang[taste];
-                if (ohang in taste_influences) {
-                    taste_influences[ohang] += taste_percentages[taste];
-                } else {
-                    taste_influences[ohang] = taste_percentages[taste];
+                // Find the most influential ohang
+                let most_influential = {ohang: null, influence: 0};
+                for (let ohang in taste_influences) {
+                    if (taste_influences[ohang] > most_influential.influence) {
+                        most_influential.ohang = ohang;
+                        most_influential.influence = taste_influences[ohang];
+                    }
                 }
-            }
 
-            // Find the most influential ohang
-            let most_influential = {ohang: null, influence: 0};
-            for (let ohang in taste_influences) {
-                if (taste_influences[ohang] > most_influential.influence) {
-                    most_influential.ohang = ohang;
-                    most_influential.influence = taste_influences[ohang];
+                // Find the corresponding MBTI personalities
+                let corresponding_mbtis = [];
+                for (let mbti in mbti_to_ohang) {
+                    if (mbti_to_ohang[mbti] === most_influential.ohang) {
+                        corresponding_mbtis.push(mbti);
+                    }
                 }
-            }
 
-            // Find the corresponding MBTI personalities
-            let corresponding_mbtis = [];
-            for (let mbti in mbti_to_ohang) {
-                if (mbti_to_ohang[mbti] === most_influential.ohang) {
-                    corresponding_mbtis.push(mbti);
+                // Generate result text
+                let resultText = '<h2>추천 색깔</h2><ul>';
+                for (let color of ohang_color_and_food_recommendations[most_influential.ohang]['색깔']) {
+                    resultText += `<li>${color}</li>`;
                 }
-            }
+                resultText += '</ul><h2>추천 음식</h2><ul>';
+                for (let food of ohang_color_and_food_recommendations[most_influential.ohang]['음식']) {
+                    resultText += `<li>${food}</li>`;
+                }
+                resultText += '</ul>';
 
-            // Generate result text
-            let resultText = '<h2>추천 색깔</h2><ul>';
-            for (let color of ohang_color_and_food_recommendations[most_influential.ohang]['색깔']) {
-                resultText += `<li>${color}</li>`;
+                // Print the result on the webpage
+                let resultBox = document.getElementById('result');
+                resultBox.innerHTML = `<h2>당신과 잘 맞는 MBTI 유형들</h2><ul>`;
+                for (let mbti of corresponding_mbtis) {
+                    resultBox.innerHTML += `<li>${mbti} - ${mbti_personalities[mbti]}</li>`;
+                }
+                resultBox.innerHTML += '</ul>' + resultText;
             }
-            resultText += '</ul><h2>추천 음식</h2><ul>';
-            for (let food of ohang_color_and_food_recommendations[most_influential.ohang]['음식']) {
-                resultText += `<li>${food}</li>`;
-            }
-            resultText += '</ul>';
-
-            // Print the result on the webpage
-            let resultBox = document.getElementById('result');
-            resultBox.innerHTML = `<h2>당신과 잘 맞는 MBTI 유형들</h2><ul>`;
-            for (let mbti of corresponding_mbtis) {
-                resultBox.innerHTML += `<li>${mbti} - ${mbti_personalities[mbti]}</li>`;
-            }
-            resultBox.innerHTML += '</ul>' + resultText;
-        }
+    })
     </script>
 </body>
 </html>
