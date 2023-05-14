@@ -37,41 +37,30 @@
     </style>
 </head>
     
+
 <body>
     <h1>나의 취향분석하기</h1>
     <p>이름: <input type="text" id="name" /></p>
-    <p>신맛: <input type="number" id="sour" min="0" max="100" /></p>
-    <p>쓴맛: <input type="number" id="bitter" min="0" max="100" /></p>
-    <p>단맛: <input type="number" id="sweet" min="0" max="100" /></p>
-    <p>매운맛: <input type="number" id="spicy" min="0" max="100" /></p>
-    <p>짠맛: <input type="number" id="salty" min="0" max="100" /></p>
     <p><button id="submit">나의 취향분석하기</button></p>
     <div id="result"></div>
 
     <script>
-        $(document).ready(function() {
-            $("#sour").val(Math.floor(Math.random() * 101));
-            $("#bitter").val(Math.floor(Math.random() * 101));
-            $("#sweet").val(Math.floor(Math.random() * 101));
-            $("#spicy").val(Math.floor(Math.random() * 101));
-            $("#salty").val(Math.floor(Math.random() * 101));
-        });
-
         $("#submit").click(function() {
             let name = $("#name").val();
-            let sour = parseFloat($("#sour").val());
-            let bitter = parseFloat($("#bitter").val());
-            let sweet = parseFloat($("#sweet").val());
-            let spicy = parseFloat($("#spicy").val());
-            let salty = parseFloat($("#salty").val());
 
+            // Hardcode taste percentages
             let taste_percentages = {
-                '신맛': sour,
-                '쓴맛': bitter,
-                '단맛': sweet,
-                '매운맛': spicy,
-                '짠맛': salty
+                '신맛': 50,
+                '쓴맛': 30,
+                '단맛': 80,
+                '매운맛': 85,
+                '짠맛': 70
             };
+
+            // Call the main function
+            main(taste_percentages);
+
+            // Define the main function
             function main(taste_percentages) {
                 let taste_to_ohang = {
                     '신맛': '목',
@@ -173,7 +162,7 @@
                 }
                 resultBox.innerHTML += '</ul>' + resultText;
             }
-    })
+        });
     </script>
 </body>
 </html>
