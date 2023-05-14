@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>취향분석하기</title>
+    <title>나의 입맛,성격,취향분석하기</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
         body {
@@ -19,7 +19,7 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            margin: 4px 2px;
+            margin: 4px auto; /* 좌우 여백 동일하게 설정 */
             cursor: pointer;
         }
 
@@ -27,25 +27,27 @@
             border: 1px solid black;
             padding: 10px;
             margin-top: 10px;
+            margin-left: auto; /* 좌우 여백 동일하게 설정 */
+            margin-right: auto; /* 좌우 여백 동일하게 설정 */
             background-color: green;
             display: inline-block;
             max-width: 600px;
         }
     </style>
 </head>
+    
 <body>
-    <h1>취향분석하기</h1>
+    <h1>나의 취향분석하기</h1>
     <p>이름: <input type="text" id="name" /></p>
     <p>신맛: <input type="number" id="sour" min="0" max="100" /></p>
     <p>쓴맛: <input type="number" id="bitter" min="0" max="100" /></p>
     <p>단맛: <input type="number" id="sweet" min="0" max="100" /></p>
     <p>매운맛: <input type="number" id="spicy" min="0" max="100" /></p>
     <p>짠맛: <input type="number" id="salty" min="0" max="100" /></p>
-    <p><button id="submit">취향분석하기</button></p>
+    <p><button id="submit">나의 취향분석하기</button></p>
     <div id="result"></div>
 
     <script>
-        // 페이지 로드 시 각 맛에 대해 랜덤 값을 생성합니다.
         $(document).ready(function() {
             $("#sour").val(Math.floor(Math.random() * 101));
             $("#bitter").val(Math.floor(Math.random() * 101));
@@ -56,22 +58,21 @@
 
         $("#submit").click(function() {
             let name = $("#name").val();
-            let sour = $("#sour").val();
-            let bitter = $("#bitter").val();
-            let sweet = $("#sweet").val();
-            let spicy = $("#spicy").val();
-            let salty = $("#salty").val();
+            let sour = parseFloat($("#sour").val());
+            let bitter = parseFloat($("#bitter").val());
+            let sweet = parseFloat($("#sweet").val());
+            let spicy = parseFloat($("#spicy").val());
+            let salty = parseFloat($("#salty").val());
 
-            // 결과를 표시하는 박스를 만듭니다.
-            let resultBox = document.getElementById('result');
-            resultBox.innerHTML = '<h2>' + name + '의 취향분석</h2>';
-            resultBox.innerHTML += '쓴맛: ' + bitter + '<br>';
-            resultBox.innerHTML += '신맛: ' + sour + '<br>';
-            resultBox.innerHTML += '단맛: ' + sweet + '<br>';
-            resultBox.innerHTML += '매운맛: ' + spicy + '<br>';
-            resultBox.innerHTML += '짠맛: ' + salty + '<br>';
-            
-                // 맛과 오행 매핑
+            let taste_percentages = {
+                '신맛': sour,
+                '쓴맛': bitter,
+                '단맛': sweet,
+                '매운맛': spicy,
+                '짠맛': salty
+            };
+
+        function main(taste_percentages) {
             let taste_to_ohang = {
                 '신맛': '목',
                 '쓴맛': '화',
@@ -80,7 +81,6 @@
                 '짠맛': '수'
             };
 
-            // MBTI와 오행 매핑
             let mbti_to_ohang = {
                 'ISTJ': '목', 'ISFJ': '목',
                 'ESTP': '화', 'ESFP': '화',
@@ -92,7 +92,6 @@
                 'ENFJ': '토', 'ENTJ': '토'
             };
 
-            // MBTI와 성격 유형 매핑
             let mbti_personalities = {
                 'ISTJ': '검사관', 'ISFJ': '보호자',
                 'ESTP': '사업가', 'ESFP': '연예인',
@@ -104,7 +103,6 @@
                 'ENFJ': '교사', 'ENTJ': '지휘관'
             };
 
-            // 오행과 색깔 및 음식 추천 매핑
             let ohang_color_and_food_recommendations = {
                 '목': {
                     '색깔': ['녹색', '청록색'],
@@ -112,7 +110,7 @@
                 },
                 '화': {
                     '색깔': ['빨간색', '주황색'],
-                                '음식': ['고추', '토마토', '파프리카', '딸기', '적포도', '석류']
+                    '음식': ['고추', '토마토', '파프리카', '딸기', '적포도', '석류']
                 },
                 '토': {
                     '색깔': ['노란색', '베이지색'],
@@ -128,79 +126,53 @@
                 }
             };
 
-            function determine_ohang_status(ratios) {
-                let status = {};
-                for (let ohang in ratios) {
-                    let ratio = ratios[ohang];
-                    if (ratio >= 80) {
-                        status[ohang] = "부족";
-                    } else if (ratio < 60) {
-                        status[ohang] = "많음";
-                    } else {
-                        status[ohang] = "적정";
-                    }
+            // Calculate taste influences
+            let taste_influences = {};
+            for (let taste in taste_percentages) {
+                let ohang = taste_to_ohang[taste];
+                if (ohang in taste_influences) {
+                    taste_influences[ohang] += taste_percentages[taste];
+                } else {
+                    taste_influences[ohang] = taste_percentages[taste];
                 }
-                return status;
             }
 
-            function get_mbti_by_ohang(ohang_status, ratios) {
-                let max_diff = -1;
-                let most_influential_mbti = null;
-                let most_influential_ohang = null;
-
-                for (let mbti in mbti_to_ohang) {
-                    let ohang = mbti_to_ohang[mbti];
-                    if (ohang_status[ohang] == "부족" || ohang_status[ohang] == "많음") {
-                        let diff = Math.abs(ratios[ohang] - 70);  // 기준 비율 70%와의 차이 계산
-                        if (diff > max_diff) {
-                            max_diff = diff;
-                            most_influential_mbti = mbti;
-                            most_influential_ohang = ohang;
-                        }
-                    }
+            // Find the most influential ohang
+            let most_influential = {ohang: null, influence: 0};
+            for (let ohang in taste_influences) {
+                if (taste_influences[ohang] > most_influential.influence) {
+                    most_influential.ohang = ohang;
+                    most_influential.influence = taste_influences[ohang];
                 }
-                return {mbti: most_influential_mbti, ohang: most_influential_ohang};
             }
 
-            function main() {
-                let taste_percentages = {};
-                for (let taste in taste_to_ohang) {
-                    let percentage = parseFloat(prompt(`${taste}의 비율(%)을 입력하세요: `));
-                    taste_percentages[taste] = percentage;
+            // Find the corresponding MBTI personalities
+            let corresponding_mbtis = [];
+            for (let mbti in mbti_to_ohang) {
+                if (mbti_to_ohang[mbti] === most_influential.ohang) {
+                    corresponding_mbtis.push(mbti);
                 }
-
-                // 맛의 비율을 오행 비율로 변환
-                let ratios = {};
-                for (let taste in taste_percentages) {
-                    let percentage = taste_percentages[taste];
-                    let ohang = taste_to_ohang[taste];
-                    ratios[ohang] = percentage;
-                }
-
-                // 오행 상태 판단
-                        let ohang_status = determine_ohang_status(ratios);
-
-                // 오행 상태를 바탕으로 가장 큰 영향을 미치는 MBTI 유형 결정
-                let most_influential = get_mbti_by_ohang(ohang_status, ratios);
-                console.log(`가장 큰 영향을 미치는 MBTI 유형: ${most_influential.mbti} - ${mbti_personalities[most_influential.mbti]}`);
-
-                // 오행이 부족하거나 많은 경우를 판단하여 추천 색깔과 음식 출력
-                let resultText = '';
-                for (let ohang in ohang_status) {
-                    let status = ohang_status[ohang];
-                    if (status == "부족" || status == "많음") {
-                        let recommendation = ohang_color_and_food_recommendations[ohang];
-                        resultText += `\n${ohang} 오행(${status})에 따른 추천 색깔: ${recommendation['색깔'].join(', ')}\n`;
-                        resultText += `${ohang} 오행(${status})에 따른 색깔 속성을 가진 추천 음식: ${recommendation['음식'].join(', ')}\n`;
-                    }
-                }
-                console.log(resultText);
             }
 
-    $(document).ready(function() {
-        main();
-    });
-</script>
+            // Generate result text
+            let resultText = '<h2>추천 색깔</h2><ul>';
+            for (let color of ohang_color_and_food_recommendations[most_influential.ohang]['색깔']) {
+                resultText += `<li>${color}</li>`;
+            }
+            resultText += '</ul><h2>추천 음식</h2><ul>';
+            for (let food of ohang_color_and_food_recommendations[most_influential.ohang]['음식']) {
+                resultText += `<li>${food}</li>`;
+            }
+            resultText += '</ul>';
+
+            // Print the result on the webpage
+            let resultBox = document.getElementById('result');
+            resultBox.innerHTML = `<h2>당신과 잘 맞는 MBTI 유형들</h2><ul>`;
+            for (let mbti of corresponding_mbtis) {
+                resultBox.innerHTML += `<li>${mbti} - ${mbti_personalities[mbti]}</li>`;
+            }
+            resultBox.innerHTML += '</ul>' + resultText;
+        }
+    </script>
 </body>
 </html>
-
