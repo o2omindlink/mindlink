@@ -10,11 +10,24 @@
             text-align: center;
         }
 
+        #submit {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
         #result {
             border: 1px solid black;
             padding: 10px;
             margin-top: 10px;
-            background-color: yellow;
+            background-color: green;
             display: inline-block;
             max-width: 600px;
         }
@@ -32,6 +45,15 @@
     <div id="result"></div>
 
     <script>
+        // 페이지 로드 시 각 맛에 대해 랜덤 값을 생성합니다.
+        $(document).ready(function() {
+            $("#sour").val(Math.floor(Math.random() * 101));
+            $("#bitter").val(Math.floor(Math.random() * 101));
+            $("#sweet").val(Math.floor(Math.random() * 101));
+            $("#spicy").val(Math.floor(Math.random() * 101));
+            $("#salty").val(Math.floor(Math.random() * 101));
+        });
+
         $("#submit").click(function() {
             let name = $("#name").val();
             let sour = $("#sour").val();
