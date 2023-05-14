@@ -62,36 +62,145 @@
             let spicy = $("#spicy").val();
             let salty = $("#salty").val();
 
-            // 결과를 계산하고
-            // ...
-
             // 결과를 표시하는 박스를 만듭니다.
             let resultBox = document.getElementById('result');
             resultBox.innerHTML = '<h2>' + name + '의 취향분석</h2>';
-            resultBox.innerHTML += '신맛: ' + sour + '<br>';
             resultBox.innerHTML += '쓴맛: ' + bitter + '<br>';
+            resultBox.innerHTML += '신맛: ' + sour + '<br>';
             resultBox.innerHTML += '단맛: ' + sweet + '<br>';
             resultBox.innerHTML += '매운맛: ' + spicy + '<br>';
             resultBox.innerHTML += '짠맛: ' + salty + '<br>';
-
-            // 각 맛의 비율을 담는 객체 생성
-            let taste_percentages = {
-                '신맛': sour,
-                '쓴맛': bitter,
-                '단맛': sweet,
-                '매운맛': spicy,
-                '짠맛': salty
+            
+                // 맛과 오행 매핑
+            let taste_to_ohang = {
+                '신맛': '목',
+                '쓴맛': '화',
+                '단맛': '토',
+                '매운맛': '금',
+                '짠맛': '수'
             };
 
-            // 결과 텍스트 생성
-            let resultText = `${name}님의 취향분석 결과는 다음과 같습니다:\n`;
-            for (let taste in taste_percentages) {
-                resultText += `${taste}: ${taste_percentages[taste]}%\n`;
+            // MBTI와 오행 매핑
+            let mbti_to_ohang = {
+                'ISTJ': '목', 'ISFJ': '목',
+                'ESTP': '화', 'ESFP': '화',
+                'INFJ': '토', 'INTJ': '토',
+                'ENTP': '금', 'ENFP': '금',
+                'ISTP': '수', 'ISFP': '수',
+                'ESTJ': '목', 'ESFJ': '목',
+                'INFP': '화', 'INTP': '화',
+                'ENFJ': '토', 'ENTJ': '토'
+            };
+
+            // MBTI와 성격 유형 매핑
+            let mbti_personalities = {
+                'ISTJ': '검사관', 'ISFJ': '보호자',
+                'ESTP': '사업가', 'ESFP': '연예인',
+                'INFJ': '예언가', 'INTJ': '과학자',
+                'ENTP': '변론가', 'ENFP': '홍보대사',
+                'ISTP': '백과사전', 'ISFP': '작은 공주',
+                'ESTJ': '감독관', 'ESFJ': '주부',
+                'INFP': '시인', 'INTP': '학자',
+                'ENFJ': '교사', 'ENTJ': '지휘관'
+            };
+
+            // 오행과 색깔 및 음식 추천 매핑
+            let ohang_color_and_food_recommendations = {
+                '목': {
+                    '색깔': ['녹색', '청록색'],
+                    '음식': ['콩나물', '브로콜리', '아보카도', '무', '시금치', '셀러리']
+                },
+                '화': {
+                    '색깔': ['빨간색', '주황색'],
+                                '음식': ['고추', '토마토', '파프리카', '딸기', '적포도', '석류']
+                },
+                '토': {
+                    '색깔': ['노란색', '베이지색'],
+                    '음식': ['감자', '고구마', '옥수수', '밤', '호박', '당근']
+                },
+                '금': {
+                    '색깔': ['화이트', '금색', '은색'],
+                    '음식': ['바나나', '계란', '닭고기', '토끼고기', '대파', '굴']
+                },
+                '수': {
+                    '색깔': ['검은색', '파란색'],
+                    '음식': ['조개', '새우', '생선', '미역', '다시마', '파래']
+                }
+            };
+
+            function determine_ohang_status(ratios) {
+                let status = {};
+                for (let ohang in ratios) {
+                    let ratio = ratios[ohang];
+                    if (ratio >= 80) {
+                        status[ohang] = "부족";
+                    } else if (ratio < 60) {
+                        status[ohang] = "많음";
+                    } else {
+                        status[ohang] = "적정";
+                    }
+                }
+                return status;
             }
 
-            // 결과를 HTML 요소에 추가
-            $("#result").html(resultText.replace(/\n/g, "<br>"));
-        });
-    </script>
+            function get_mbti_by_ohang(ohang_status, ratios) {
+                let max_diff = -1;
+                let most_influential_mbti = null;
+                let most_influential_ohang = null;
+
+                for (let mbti in mbti_to_ohang) {
+                    let ohang = mbti_to_ohang[mbti];
+                    if (ohang_status[ohang] == "부족" || ohang_status[ohang] == "많음") {
+                        let diff = Math.abs(ratios[ohang] - 70);  // 기준 비율 70%와의 차이 계산
+                        if (diff > max_diff) {
+                            max_diff = diff;
+                            most_influential_mbti = mbti;
+                            most_influential_ohang = ohang;
+                        }
+                    }
+                }
+                return {mbti: most_influential_mbti, ohang: most_influential_ohang};
+            }
+
+            function main() {
+                let taste_percentages = {};
+                for (let taste in taste_to_ohang) {
+                    let percentage = parseFloat(prompt(`${taste}의 비율(%)을 입력하세요: `));
+                    taste_percentages[taste] = percentage;
+                }
+
+                // 맛의 비율을 오행 비율로 변환
+                let ratios = {};
+                for (let taste in taste_percentages) {
+                    let percentage = taste_percentages[taste];
+                    let ohang = taste_to_ohang[taste];
+                    ratios[ohang] = percentage;
+                }
+
+                // 오행 상태 판단
+                        let ohang_status = determine_ohang_status(ratios);
+
+                // 오행 상태를 바탕으로 가장 큰 영향을 미치는 MBTI 유형 결정
+                let most_influential = get_mbti_by_ohang(ohang_status, ratios);
+                console.log(`가장 큰 영향을 미치는 MBTI 유형: ${most_influential.mbti} - ${mbti_personalities[most_influential.mbti]}`);
+
+                // 오행이 부족하거나 많은 경우를 판단하여 추천 색깔과 음식 출력
+                let resultText = '';
+                for (let ohang in ohang_status) {
+                    let status = ohang_status[ohang];
+                    if (status == "부족" || status == "많음") {
+                        let recommendation = ohang_color_and_food_recommendations[ohang];
+                        resultText += `\n${ohang} 오행(${status})에 따른 추천 색깔: ${recommendation['색깔'].join(', ')}\n`;
+                        resultText += `${ohang} 오행(${status})에 따른 색깔 속성을 가진 추천 음식: ${recommendation['음식'].join(', ')}\n`;
+                    }
+                }
+                console.log(resultText);
+            }
+
+    $(document).ready(function() {
+        main();
+    });
+</script>
 </body>
 </html>
+
