@@ -64,20 +64,15 @@
     .padding-bottom {
       padding-bottom: 20px;
     }
-    .hashtags {
-      margin-top: 10px;
+    .content {
+      margin-bottom: 20px;
     }
     .hashtags span {
-      padding: 2px 4px;
-      background-color: #808080;
+      display: inline-block;
       margin-right: 5px;
-      border-radius: 3px;
-    }
-    .hashtags span:last-child {
-      margin-right: 0;
-    }
-    .content {
-      text-align: left;
+      padding: 5px;
+      background-color: #FFFFCC;
+      color: black;
     }
   </style>
 </head>
@@ -114,16 +109,22 @@
         <label for="dislikeTaste5">짠맛</label>
       </div>
 
+
       <div class="spacer"></div>
 
       <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향보기</button>
 
       <div id="resultBox" class="result-box" style="display: none; background-color: #FFFFCC;">
         <p class="bold" style="font-size: 23px;">나의 입맛 취향</p>
-        <div class="content" id="content"></div>
-        <div class="hashtags" id="hashtags"></div>
+        <div class="content">
+          <p id="content"></p>
+        </div>
+        <div class="hashtags"></div>
       </div>
     </form>
+
+    <div class="padding-bottom"></div>
+    <p class="copyright">본 프로그램의 저작권은 옥토에게 있습니다.</p>
   </div>
 
   <script>
@@ -131,55 +132,93 @@
       var quizForm = document.getElementById("quizForm");
       var resultBox = document.getElementById("resultBox");
       var content = document.getElementById("content");
-      var hashtags = document.getElementById("hashtags");
+      var hashtags = document.querySelector(".hashtags");
+
       var favTaste = document.querySelector('input[name="favTaste"]:checked').value;
       var dislikeTaste = document.querySelector('input[name="dislikeTaste"]:checked').value;
 
       var recommendations = {
         "신맛": {
-          "content": ["당신은 오행에서 신맛을 선호하는 사람입니다."],
-          "hashtags": ["#신맛", "#과일", "#김치", "#토마토", "#식초", "#초록색", "#나무", "#간질환"]
+          "과한": {
+            "content": ["과한 결과 1", "과한 결과 2", "과한 결과 3", "과한 결과 4", "과한 결과 5"],
+            "hashtags": ["#과한1", "#과한2", "#과한3", "#과한4", "#과한5"]
+          },
+          "부족": {
+            "content": ["부족한 결과 1", "부족한 결과 2", "부족한 결과 3", "부족한 결과 4", "부족한 결과 5"],
+            "hashtags": ["#부족1", "#부족2", "#부족3", "#부족4", "#부족5"]
+          }
         },
         "쓴맛": {
-          "content": ["당신은 오행에서 쓴맛을 싫어하는 사람입니다."],
-          "hashtags": ["#쓴맛", "#쑥", "#당귀", "#미나리", "#카레", "#차", "#커피", "#황토색", "#흙", "#혈관질환"]
+          "과한": {
+            "content": ["과한 결과 1", "과한 결과 2", "과한 결과 3", "과한 결과 4", "과한 결과 5"],
+            "hashtags": ["#과한1", "#과한2", "#과한3", "#과한4", "#과한5"]
+          },
+          "부족": {
+            "content": ["부족한 결과 1", "부족한 결과 2", "부족한 결과 3", "부족한 결과 4", "부족한 결과 5"],
+            "hashtags": ["#부족1", "#부족2", "#부족3", "#부족4", "#부족5"]
+          }
         },
         "단맛": {
-          "content": ["당신은 오행에서 단맛을 선호하는 사람입니다."],
-          "hashtags": ["#단맛", "#황토색", "#흙", "#소화기질환"]
+          "과한": {
+            "content": ["과한 결과 1", "과한 결과 2", "과한 결과 3", "과한 결과 4", "과한 결과 5"],
+            "hashtags": ["#과한1", "#과한2", "#과한3", "#과한4", "#과한5"]
+          },
+          "부족": {
+            "content": ["부족한 결과 1", "부족한 결과 2", "부족한 결과 3", "부족한 결과 4", "부족한 결과 5"],
+            "hashtags": ["#부족1", "#부족2", "#부족3", "#부족4", "#부족5"]
+          }
         },
         "매운맛": {
-          "content": ["당신은 오행에서 매운맛을 싫어하는 사람입니다."],
-          "hashtags": ["#매운맛", "#화이트색", "#골드색", "#은색", "#금속", "#폐질환"]
+          "과한": {
+            "content": ["과한 결과 1", "과한 결과 2", "과한 결과 3", "과한 결과 4", "과한 결과 5"],
+            "hashtags": ["#과한1", "#과한2", "#과한3", "#과한4", "#과한5"]
+          },
+          "부족": {
+            "content": ["부족한 결과 1", "부족한 결과 2", "부족한 결과 3", "부족한 결과 4", "부족한 결과 5"],
+            "hashtags": ["#부족1", "#부족2", "#부족3", "#부족4", "#부족5"]
+          }
         },
         "짠맛": {
-          "content": ["당신은 오행에서 짠맛을 선호하는 사람입니다."],
-          "hashtags": ["#짠맛", "#해산물", "#새우젓", "#간장", "#검정색", "#파란색", "#수영", "#신장방광질환"]
+          "과한": {
+            "content": ["과한 결과 1", "과한 결과 2", "과한 결과 3", "과한 결과 4", "과한 결과 5"],
+            "hashtags": ["#과한1", "#과한2", "#과한3", "#과한4", "#과한5"]
+          },
+          "부족": {
+            "content": ["부족한 결과 1", "부족한 결과 2", "부족한 결과 3", "부족한 결과 4", "부족한 결과 5"],
+            "hashtags": ["#부족1", "#부족2", "#부족3", "#부족4", "#부족5"]
+          }
         }
       };
 
-      var resultContent = "";
-      var resultHashtags = "";
+      var favTasteResult = recommendations[favTaste];
+      var dislikeTasteResult = recommendations[dislikeTaste];
 
-      if (dislikeTaste in recommendations) {
-        resultContent = recommendations[dislikeTaste]["content"];
-        resultHashtags = recommendations[dislikeTaste]["hashtags"];
-      } else if (favTaste in recommendations) {
-        resultContent = recommendations[favTaste]["content"];
-        resultHashtags = recommendations[favTaste]["hashtags"];
+      var favTasteIntensity = Math.random() < 0.5 ? "과한" : "부족";
+      var dislikeTasteIntensity = Math.random() < 0.5 ? "과한" : "부족";
+
+      var favTasteContent = favTasteResult[favTasteIntensity]["content"];
+      var favTasteHashtags = favTasteResult[favTasteIntensity]["hashtags"];
+
+      var dislikeTasteContent = dislikeTasteResult[dislikeTasteIntensity]["content"];
+      var dislikeTasteHashtags = dislikeTasteResult[dislikeTasteIntensity]["hashtags"];
+
+      var favTasteRandomContent = favTasteContent[Math.floor(Math.random() * favTasteContent.length)];
+      var dislikeTasteRandomContent = dislikeTasteContent[Math.floor(Math.random() * dislikeTasteContent.length)];
+
+      content.innerHTML = "당신의 오행이 많을 때의 결과: " + favTasteRandomContent + "<br>" +
+        "당신의 오행이 부족할 때의 결과: " + dislikeTasteRandomContent;
+
+      var favTasteHashtagsHTML = "";
+      for (var i = 0; i < favTasteHashtags.length; i++) {
+        favTasteHashtagsHTML += "<span>" + favTasteHashtags[i] + "</span> ";
+      }
+      var dislikeTasteHashtagsHTML = "";
+      for (var i = 0; i < dislikeTasteHashtags.length; i++) {
+        dislikeTasteHashtagsHTML += "<span>" + dislikeTasteHashtags[i] + "</span> ";
       }
 
-      var contentHTML = "";
-      for (var i = 0; i < resultContent.length; i++) {
-        contentHTML += "<p>" + resultContent[i] + "</p>";
-      }
-      content.innerHTML = contentHTML;
-
-      var hashtagsHTML = "";
-      for (var i = 0; i < resultHashtags.length; i++) {
-        hashtagsHTML += "<span>" + resultHashtags[i] + "</span>";
-      }
-      hashtags.innerHTML = "해시태그: " + hashtagsHTML;
+      hashtags.innerHTML = "당신의 오행이 많을 때의 해시태그: " + favTasteHashtagsHTML + "<br>" +
+        "당신의 오행이 부족할 때의 해시태그: " + dislikeTasteHashtagsHTML;
 
       resultBox.style.display = "block";
     }
