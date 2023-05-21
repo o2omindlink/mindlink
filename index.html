@@ -71,16 +71,16 @@
 
       <div class="question">
         <p>2. 당신이 가장 싫어하는 맛은?</p>
-        <input type="radio" id="leastFavTaste1" name="leastFavTaste" value="신맛">
-        <label for="leastFavTaste1">신맛</label>
-        <input type="radio" id="leastFavTaste2" name="leastFavTaste" value="쓴맛">
-        <label for="leastFavTaste2">쓴맛</label>
-        <input type="radio" id="leastFavTaste3" name="leastFavTaste" value="단맛">
-        <label for="leastFavTaste3">단맛</label>
-        <input type="radio" id="leastFavTaste4" name="leastFavTaste" value="매운맛">
-        <label for="leastFavTaste4">매운맛</label>
-        <input type="radio" id="leastFavTaste5" name="leastFavTaste" value="짠맛">
-        <label for="leastFavTaste5">짠맛</label>
+        <input type="radio" id="dislikeTaste1" name="dislikeTaste" value="신맛">
+        <label for="dislikeTaste1">신맛</label>
+        <input type="radio" id="dislikeTaste2" name="dislikeTaste" value="쓴맛">
+        <label for="dislikeTaste2">쓴맛</label>
+        <input type="radio" id="dislikeTaste3" name="dislikeTaste" value="단맛">
+        <label for="dislikeTaste3">단맛</label>
+        <input type="radio" id="dislikeTaste4" name="dislikeTaste" value="매운맛">
+        <label for="dislikeTaste4">매운맛</label>
+        <input type="radio" id="dislikeTaste5" name="dislikeTaste" value="짠맛">
+        <label for="dislikeTaste5">짠맛</label>
       </div>
 
       <div class="question">
@@ -101,10 +101,10 @@
 
       <div class="question">
         <p>5. 당신은 싱거운 음식을 좋아하나요?</p>
-        <input type="radio" id="blandFood1" name="blandFood" value="좋아합니다">
-        <label for="blandFood1">좋아합니다</label>
-        <input type="radio" id="blandFood2" name="blandFood" value="싫어합니다">
-        <label for="blandFood2">싫어합니다</label>
+        <input type="radio" id="lightFood1" name="lightFood" value="좋아합니다">
+        <label for="lightFood1">좋아합니다</label>
+        <input type="radio" id="lightFood2" name="lightFood" value="싫어합니다">
+        <label for="lightFood2">싫어합니다</label>
       </div>
 
       <div class="question">
@@ -141,7 +141,7 @@
       var resultText = document.getElementById("resultText");
       var favTaste = document.querySelector('input[name="favTaste"]:checked').value;
       var dislikeTaste = document.querySelector('input[name="dislikeTaste"]:checked').value;
-      var coffee = document.querySelector('input[name="coffee"]:checked').value;
+      var blackCoffee = document.querySelector('input[name="blackCoffee"]:checked').value;
       var lemon = document.querySelector('input[name="lemon"]:checked').value;
       var lightFood = document.querySelector('input[name="lightFood"]:checked').value;
       var spicyFood = document.querySelector('input[name="spicyFood"]:checked').value;
@@ -150,13 +150,13 @@
       var result = "나의 입맛 취향<br><br>" +
         "내가 가장 좋아하는 맛은 " + favTaste + ".<br>" +
         "내가 가장 싫어하는 맛은 " + dislikeTaste + ".<br>" +
-        "저는 블랙커피를 " + coffee + ".<br>" +
+        "저는 블랙커피를 " + blackCoffee + ".<br>" +
         "저는 레몬을 " + lemon + ".<br>" +
         "저는 싱거운 음식을 " + lightFood + ".<br>" +
         "저는 매운음식을 " + spicyFood + ".<br>" +
         "저는 달달한 음식을 " + sweetFood + ".";
 
-      document.getElementById("result").innerHTML = result;
+      resultText.innerHTML = result;
       resultBox.style.display = "block";
     }
   </script>
