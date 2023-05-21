@@ -1,69 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>입맛 테스트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
+      max-width: 800px;
+      margin: 0 auto;
       background-color: black;
       color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
+      padding: 0 10px;
     }
-
-    .container {
-      text-align: center;
-      background-color: #f1f1f1;
-      padding: 10px;
-      border: 1px solid white;
-      max-width: 600px;
-      margin: auto;
-    }
-
     .question {
-      margin-bottom: 10px;
       padding: 10px;
-      border: 1px solid #ddd;
+      margin: 10px 0;
+      border: 1px solid white;
+      background-color: #8B0000;  /* Dark red */
+    }
+    .question p {
+      margin: 0;
       line-height: 0.9;
     }
-
+    .question input[type=radio] {
+      margin-right: 5px;
+    }
     .spacer {
-      height: 2em;
+      height: 30px;
     }
-
-    .result-box {
-      background-color: #FFEFB7;
-      color: black;
+    button {
+      display: block;
+      width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      border: 1px solid #ddd;
-      font-size: 15px;
-      text-align: center;
-    }
-
-    #submitButton {
+      font-size: 23px;
+      margin-bottom: 20px;
       background-color: green;
       color: white;
+    }
+    .result-box {
       padding: 10px;
-      border: none;
-      cursor: pointer;
-      font-size: 23px;
+      border: 1px solid white;
+      background-color: #FFFFE0;
+      color: black;
     }
-
-    #submitButton:hover {
-      opacity: 0.8;
-    }
-
     .bold {
       font-weight: bold;
+      text-align: center;
       font-size: 20px;
     }
   </style>
 </head>
+<body>
 
 <body>
   <div class="container">
