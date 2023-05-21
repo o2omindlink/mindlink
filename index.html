@@ -1,140 +1,163 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>입맛 테스트</title>
   <style>
     body {
       background-color: black;
       color: white;
       font-family: Arial, sans-serif;
-      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
     }
-    .box {
+
+    .container {
+      text-align: center;
+      background-color: #f1f1f1;
+      padding: 10px;
       border: 1px solid white;
-      padding: 10px;
+      max-width: 600px;
+      margin: auto;
     }
+
+    .question {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      line-height: 0.9;
+    }
+
+    .spacer {
+      height: 2em;
+    }
+
     .result-box {
-      background-color: #FFFF66;
+      background-color: #FFEFB7;
       color: black;
       padding: 10px;
-    }
-    .question {
       margin-top: 10px;
+      border: 1px solid #ddd;
+      font-size: 15px;
+      text-align: center;
     }
+
     #submitButton {
       background-color: green;
       color: white;
       padding: 10px;
       border: none;
-      margin-top: 20px;
-      display: block;
-      width: 100%;
+      cursor: pointer;
+      font-size: 23px;
+    }
+
+    #submitButton:hover {
+      opacity: 0.8;
+    }
+
+    .bold {
+      font-weight: bold;
+      font-size: 20px;
     }
   </style>
 </head>
+
 <body>
+  <div class="container">
+    <img src="https://github.com/o2omindlink/mindlink/blob/main/00.jpeg" alt="Image">
 
-<div class="box">
-  <img src="https://github.com/o2omindlink/mindlink/raw/main/00.jpeg" alt="Image" style="width:100%;"><br><br>
-  <h1>당신의 입맛 테스트</h1>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. 당신이 가장 좋아하는 맛은?</p>
+        <input type="radio" id="favTaste1" name="favTaste" value="신맛">
+        <label for="favTaste1">신맛</label>
+        <input type="radio" id="favTaste2" name="favTaste" value="쓴맛">
+        <label for="favTaste2">쓴맛</label>
+        <input type="radio" id="favTaste3" name="favTaste" value="단맛">
+        <label for="favTaste3">단맛</label>
+        <input type="radio" id="favTaste4" name="favTaste" value="매운맛">
+        <label for="favTaste4">매운맛</label>
+        <input type="radio" id="favTaste5" name="favTaste" value="짠맛">
+        <label for="favTaste5">짠맛</label>
+      </div>
 
-  <form id="tasteTestForm">
-    <div class="question">
-      <p>1. 당신이 가장 좋아하는 맛은?</p>
-      <input type="radio" id="favTaste1" name="favTaste" value="신맛">
-      <label for="favTaste1">신맛</label>
-      <input type="radio" id="favTaste2" name="favTaste" value="쓴맛">
-      <label for="favTaste2">쓴맛</label>
-      <input type="radio" id="favTaste3" name="favTaste" value="단맛">
-      <label for="favTaste3">단맛</label>
-      <input type="radio" id="favTaste4" name="favTaste" value="매운맛">
-      <label for="favTaste4">매운맛</label>
-      <input type="radio" id="favTaste5" name="favTaste" value="짠맛">
-      <label for="favTaste5">짠맛</label>
-    </div>
+      <div class="question">
+        <p>2. 당신이 가장 싫어하는 맛은?</p>
+        <input type="radio" id="leastFavTaste1" name="leastFavTaste" value="신맛">
+        <label for="leastFavTaste1">신맛</label>
+        <input type="radio" id="leastFavTaste2" name="leastFavTaste" value="쓴맛">
+        <label for="leastFavTaste2">쓴맛</label>
+        <input type="radio" id="leastFavTaste3" name="leastFavTaste" value="단맛">
+        <label for="leastFavTaste3">단맛</label>
+        <input type="radio" id="leastFavTaste4" name="leastFavTaste" value="매운맛">
+        <label for="leastFavTaste4">매운맛</label>
+        <input type="radio" id="leastFavTaste5" name="leastFavTaste" value="짠맛">
+        <label for="leastFavTaste5">짠맛</label>
+      </div>
 
-    <div class="question">
-      <p>2. 당신이 가장 싫어하는 맛은?</p>
-      <input type="radio" id="dislikeTaste1" name="dislikeTaste" value="신맛">
-      <label for="dislikeTaste1">신맛</label>
-      <input type="radio" id="dislikeTaste2" name="dislikeTaste" value="쓴맛">
-      <label for="dislikeTaste2">쓴맛</label>
-      <input type="radio" id="dislikeTaste3" name="dislikeTaste" value="단맛">
-      <label for="dislikeTaste3">단맛</label>
-      <input type="radio" id="dislikeTaste4" name="dislikeTaste" value="매운맛">
-      <label for="dislikeTaste4">매운맛</label>
-      <input type="radio" id="dislikeTaste5" name="dislikeTaste" value="짠맛">
-      <label for="dislikeTaste5">짠맛</label>
-    </div>
+      <div class="question">
+        <p>3. 당신은 블랙커피를 좋아하나요?</p>
+        <input type="radio" id="blackCoffee1" name="blackCoffee" value="좋아합니다">
+        <label for="blackCoffee1">좋아합니다</label>
+        <input type="radio" id="blackCoffee2" name="blackCoffee" value="싫어합니다">
+        <label for="blackCoffee2">싫어합니다</label>
+      </div>
 
-    <div class="question">
-      <p>3. 당신은 블랙커피를 좋아하나요?</p>
-      <input type="radio" id="coffee1" name="coffee" value="좋아합니다">
-      <label for="coffee1">좋아합니다</label>
-      <input type="radio" id="coffee2" name="coffee" value="싫어합니다">
-      <label for="coffee2">싫어합니다</label>
-    </div>
+      <div class="question">
+        <p>4. 당신은 레몬을 좋아하나요?</p>
+        <input type="radio" id="lemon1" name="lemon" value="좋아합니다">
+        <label for="lemon1">좋아합니다</label>
+        <input type="radio" id="lemon2" name="lemon" value="싫어합니다">
+        <label for="lemon2">싫어합니다</label>
+      </div>
 
-    <div class="question">
-      <p>4. 당신은 레몬을 좋아하나요?</p>
-      <input type="radio" id="lemon1" name="lemon" value="좋아합니다">
-      <label for="lemon1">좋아합니다</label>
-      <input type="radio" id="lemon2" name="lemon" value="싫어합니다">
-      <label for="lemon2">싫어합니다</label>
-    </div>
+      <div class="question">
+        <p>5. 당신은 싱거운 음식을 좋아하나요?</p>
+        <input type="radio" id="blandFood1" name="blandFood" value="좋아합니다">
+        <label for="blandFood1">좋아합니다</label>
+        <input type="radio" id="blandFood2" name="blandFood" value="싫어합니다">
+        <label for="blandFood2">싫어합니다</label>
+      </div>
 
-    <div class="question">
-      <p>5. 당신은 싱거운 음식을 좋아하나요?</p>
-      <input type="radio" id="lightFood1" name="lightFood" value="좋아합니다">
-      <label for="lightFood1">좋아합니다</label>
-      <input type="radio" id="lightFood2" name="lightFood" value="싫어합니다">
-      <label for="lightFood2">싫어합니다</label>
-    </div>
+      <div class="question">
+        <p>6. 당신은 매운 음식을 좋아하나요?</p>
+        <input type="radio" id="spicyFood1" name="spicyFood" value="좋아합니다">
+        <label for="spicyFood1">좋아합니다</label>
+        <input type="radio" id="spicyFood2" name="spicyFood" value="싫어합니다">
+        <label for="spicyFood2">싫어합니다</label>
+      </div>
 
-    <div class="question">
-      <p>6. 당신은 매운음식을 좋아하나요?</p>
-      <input type="radio" id="spicyFood1" name="spicyFood" value="좋아합니다">
-      <label for="spicyFood1">좋아합니다</label>
-      <input type="radio" id="spicyFood2" name="spicyFood" value="싫어합니다">
-      <label for="spicyFood2">싫어합니다</label>
-    </div>
+      <div class="question">
+        <p>7. 당신은 달달한 음식을 좋아하나요?</p>
+        <input type="radio" id="sweetFood1" name="sweetFood" value="좋아합니다">
+        <label for="sweetFood1">좋아합니다</label>
+        <input type="radio" id="sweetFood2" name="sweetFood" value="싫어합니다">
+        <label for="sweetFood2">싫어합니다</label>
+      </div>
 
-    <div class="question">
-      <p>7. 당신은 달달한 음식을 좋아하나요?</p>
-      <input type="radio" id="sweetFood1" name="sweetFood" value="좋아합니다">
-      <label for="sweetFood1">좋아합니다</label>
-      <input type="radio" id="sweetFood2" name="sweetFood" value="싫어합니다">
-      <label for="sweetFood2">싫어합니다</label>
-    </div>
+      <div class="spacer"></div>
 
-    <input type="button" id="submitButton" value="나의 입맛 취향보기" onclick="showResult()">
-  </form>
+      <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향보기</button>
 
-  <div id="result" class="result-box"></div>
-</div>
+      <div id="resultBox" class="result-box" style="display: none;">
+        <p class="bold">나의 입맛 취향</p>
+        <p id="resultText"></p>
+      </div>
+    </form>
+  </div>
 
-<script>
-function showResult() {
-  var favTaste = document.querySelector('input[name="favTaste"]:checked').value;
-  var dislikeTaste = document.querySelector('input[name="dislikeTaste"]:checked').value;
-  var coffee = document.querySelector('input[name="coffee"]:checked').value;
-  var lemon = document.querySelector('input[name="lemon"]:checked').value;
-  var lightFood = document.querySelector('input[name="lightFood"]:checked').value;
-  var spicyFood = document.querySelector('input[name="spicyFood"]:checked').value;
-  var sweetFood = document.querySelector('input[name="sweetFood"]:checked').value;
+  <script>
+    function showResults() {
+      var quizForm = document.getElementById("quizForm");
+      var resultBox = document.getElementById("resultBox");
+      var resultText = document.getElementById("resultText");
+      // Process the form answers here and update resultText.innerText
 
-  var result = "나의 입맛 취향<br><br>" +
-    "내가 가장 좋아하는 맛은 " + favTaste + ".<br>" +
-    "내가 가장 싫어하는 맛은 " + dislikeTaste + ".<br>" +
-    "저는 블랙커피를 " + coffee + ".<br>" +
-    "저는 레몬을 " + lemon + ".<br>" +
-    "저는 싱거운 음식을 " + lightFood + ".<br>" +
-    "저는 매운음식을 " + spicyFood + ".<br>" +
-    "저는 달달한 음식을 " + sweetFood + ".";
-
-  document.getElementById("result").innerHTML = result;
-}
-</script>
-
+      resultBox.style.display = "block";
+    }
+  </script>
 </body>
 </html>
