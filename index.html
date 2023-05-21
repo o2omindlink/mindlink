@@ -64,44 +64,26 @@
     .padding-bottom {
       padding-bottom: 20px;
     }
-    .recommendation-box {
-      padding: 10px;
-      border: 1px solid white;
-      background-color: #FFFFCC;
-      color: black;
-      text-align: center;
-    }
-    .recommendation-box p {
-      margin-bottom: 10px;
-    }
     .hashtags {
-      font-weight: bold;
+      margin-top: 10px;
     }
     .hashtags span {
+      padding: 2px 4px;
+      background-color: #808080;
       margin-right: 5px;
-      padding: 5px;
-      background-color: green;
-    }
-    .hashtags span:first-child {
-      margin-left: 0;
+      border-radius: 3px;
     }
     .hashtags span:last-child {
       margin-right: 0;
     }
-    .copyright {
-      padding: 10px;
-      background-color: green;
-      color: white;
-      font-weight: bold;
-      font-size: 13px;
-      text-align: center;
+    .content {
+      text-align: left;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <div class="title-box">맛으로 보는 나의 성향과 취향</div>
+    <div class="title-box">맛으로 보는 나의 성격과 취향</div>
 
     <form id="quizForm">
       <div class="question">
@@ -132,168 +114,74 @@
         <label for="dislikeTaste5">짠맛</label>
       </div>
 
-      <div class="question">
-        <p>3. 당신은 블랙커피를 좋아하나요?</p>
-        <input type="radio" id="blackCoffee1" name="blackCoffee" value="좋아합니다">
-        <label for="blackCoffee1">좋아합니다</label>
-        <input type="radio" id="blackCoffee2" name="blackCoffee" value="싫어합니다">
-        <label for="blackCoffee2">싫어합니다</label>
-      </div>
-
-      <div class="question">
-        <p>4. 당신은 레몬을 좋아하나요?</p>
-        <input type="radio" id="lemon1" name="lemon" value="좋아합니다">
-        <label for="lemon1">좋아합니다</label>
-        <input type="radio" id="lemon2" name="lemon" value="싫어합니다">
-        <label for="lemon2">싫어합니다</label>
-      </div>
-
-      <div class="question">
-        <p>5. 당신은 싱거운 음식을 좋아하나요?</p>
-        <input type="radio" id="lightFood1" name="lightFood" value="좋아합니다">
-        <label for="lightFood1">좋아합니다</label>
-        <input type="radio" id="lightFood2" name="lightFood" value="싫어합니다">
-        <label for="lightFood2">싫어합니다</label>
-      </div>
-
-      <div class="question">
-        <p>6. 당신은 매운 음식을 좋아하나요?</p>
-        <input type="radio" id="spicyFood1" name="spicyFood" value="좋아합니다">
-        <label for="spicyFood1">좋아합니다</label>
-        <input type="radio" id="spicyFood2" name="spicyFood" value="싫어합니다">
-        <label for="spicyFood2">싫어합니다</label>
-      </div>
-
-      <div class="question">
-        <p>7. 당신은 달달한 음식을 좋아하나요?</p>
-        <input type="radio" id="sweetFood1" name="sweetFood" value="좋아합니다">
-        <label for="sweetFood1">좋아합니다</label>
-        <input type="radio" id="sweetFood2" name="sweetFood" value="싫어합니다">
-        <label for="sweetFood2">싫어합니다</label>
-      </div>
-
       <div class="spacer"></div>
 
       <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향보기</button>
 
-      <div id="resultBox" class="result-box" style="display: none;">
-        <p class="bold">나의 입맛 취향</p>
-        <p id="resultText"></p>
-      </div>
-
-      <div id="recommendationBox" class="recommendation-box" style="display: none;">
-        <p class="bold">당신에게 권장되는 사항:</p>
-        <div id="content"></div>
-        <p class="hashtags"></p>
+      <div id="resultBox" class="result-box" style="display: none; background-color: #FFFFCC;">
+        <p class="bold" style="font-size: 23px;">나의 입맛 취향</p>
+        <div class="content" id="content"></div>
+        <div class="hashtags" id="hashtags"></div>
       </div>
     </form>
-
-    <div class="padding-bottom"></div>
-    <p class="copyright">본 프로그램의 저작권은 옥토에게 있습니다.</p>
   </div>
 
   <script>
     function showResults() {
       var quizForm = document.getElementById("quizForm");
       var resultBox = document.getElementById("resultBox");
-      var resultText = document.getElementById("resultText");
+      var content = document.getElementById("content");
+      var hashtags = document.getElementById("hashtags");
       var favTaste = document.querySelector('input[name="favTaste"]:checked').value;
       var dislikeTaste = document.querySelector('input[name="dislikeTaste"]:checked').value;
-      var blackCoffee = document.querySelector('input[name="blackCoffee"]:checked').value;
-      var lemon = document.querySelector('input[name="lemon"]:checked').value;
-      var lightFood = document.querySelector('input[name="lightFood"]:checked').value;
-      var spicyFood = document.querySelector('input[name="spicyFood"]:checked').value;
-      var sweetFood = document.querySelector('input[name="sweetFood"]:checked').value;
 
-      var result = 
-        "<span class='bold'>내가 가장 좋아하는 맛은 " + favTaste + ".</span><br>" +
-        "<span class='bold'>내가 가장 싫어하는 맛은 " + dislikeTaste + ".</span><br>" +
-        "<span class='bold'>나는 블랙커피를 " + blackCoffee + ".</span><br>" +
-        "<span class='bold'>나는 레몬을 " + lemon + ".</span><br>" +
-        "<span class='bold'>나는 싱거운 음식을 " + lightFood + ".</span><br>" +
-        "<span class='bold'>나는 매운 음식을 " + spicyFood + ".</span><br>" +
-        "<span class='bold'>나는 달달한 음식을 " + sweetFood + ".</span>";
-
-      resultText.innerHTML = result;
-      resultBox.style.display = "block";
-
-      // 오행 결과 계산
-      var personality = calculatePersonality(favTaste, dislikeTaste);
-      showRecommendation(personality);
-    }
-
-    function calculatePersonality(favTaste, dislikeTaste) {
-      var elements = {
-        "신맛": "목",
-        "쓴맛": "화",
-        "단맛": "토",
-        "매운맛": "금",
-        "짠맛": "수"
-      };
-
-      var favElement = elements[favTaste];
-      var dislikeElement = elements[dislikeTaste];
-
-      if (favElement === dislikeElement) {
-        // 선호하는 맛과 싫어하는 맛이 같으면 중립 성향
-        return "중립";
-      } else {
-        // 선호하는 맛과 싫어하는 맛이 다르면 해당 원소 부족 성향
-        return favElement + "이 부족한 사람";
-      }
-    }
-
-    function showRecommendation(personality) {
       var recommendations = {
-        "목이 부족한 사람": {
-          "content": [
-            "당신은 오행에서 목이 부족한 사람입니다."
-          ],
+        "신맛": {
+          "content": ["당신은 오행에서 신맛을 선호하는 사람입니다."],
           "hashtags": ["#신맛", "#과일", "#김치", "#토마토", "#식초", "#초록색", "#나무", "#간질환"]
         },
-        "화가 부족한 사람": {
-          "content": [
-            "당신은 오행에서 화가 부족한 사람입니다."
-          ],
-          "hashtags": ["#쓴맛", "#황토색", "#흙관련활동", "#혈관질환"]
+        "쓴맛": {
+          "content": ["당신은 오행에서 쓴맛을 싫어하는 사람입니다."],
+          "hashtags": ["#쓴맛", "#쑥", "#당귀", "#미나리", "#카레", "#차", "#커피", "#황토색", "#흙", "#혈관질환"]
         },
-        "토가 부족한 사람": {
-          "content": [
-            "당신은 오행에서 토가 부족한 사람입니다."
-          ],
-          "hashtags": ["#단맛", "#고구마", "#감자", "#당근", "#황토색", "#흙", "#소화기질환"]
+        "단맛": {
+          "content": ["당신은 오행에서 단맛을 선호하는 사람입니다."],
+          "hashtags": ["#단맛", "#황토색", "#흙", "#소화기질환"]
         },
-        "금이 부족한 사람": {
-          "content": [
-            "당신은 오행에서 금이 부족한 사람입니다."
-          ],
-          "hashtags": ["#매운맛", "#고추", "#생강", "#화이트", "#골드", "#은색", "#금속", "#폐질환"]
+        "매운맛": {
+          "content": ["당신은 오행에서 매운맛을 싫어하는 사람입니다."],
+          "hashtags": ["#매운맛", "#화이트색", "#골드색", "#은색", "#금속", "#폐질환"]
         },
-        "수가 부족한 사람": {
-          "content": [
-            "당신은 오행에서 수가 부족한 사람입니다."
-          ],
+        "짠맛": {
+          "content": ["당신은 오행에서 짠맛을 선호하는 사람입니다."],
           "hashtags": ["#짠맛", "#해산물", "#새우젓", "#간장", "#검정색", "#파란색", "#수영", "#신장방광질환"]
         }
       };
 
-      var content = recommendations[personality]["content"];
-      var hashtags = recommendations[personality]["hashtags"];
+      var resultContent = "";
+      var resultHashtags = "";
+
+      if (dislikeTaste in recommendations) {
+        resultContent = recommendations[dislikeTaste]["content"];
+        resultHashtags = recommendations[dislikeTaste]["hashtags"];
+      } else if (favTaste in recommendations) {
+        resultContent = recommendations[favTaste]["content"];
+        resultHashtags = recommendations[favTaste]["hashtags"];
+      }
 
       var contentHTML = "";
-      for (var i = 0; i < content.length; i++) {
-        contentHTML += "<p>" + content[i] + "</p>";
+      for (var i = 0; i < resultContent.length; i++) {
+        contentHTML += "<p>" + resultContent[i] + "</p>";
       }
-      document.getElementById("content").innerHTML = contentHTML;
+      content.innerHTML = contentHTML;
 
       var hashtagsHTML = "";
-      for (var i = 0; i < hashtags.length; i++) {
-        hashtagsHTML += "<span>" + hashtags[i] + "</span> ";
+      for (var i = 0; i < resultHashtags.length; i++) {
+        hashtagsHTML += "<span>" + resultHashtags[i] + "</span>";
       }
-      document.getElementById("hashtags").innerHTML = "<span class='hashtags'>해시태그:</span> " + hashtagsHTML;
+      hashtags.innerHTML = "해시태그: " + hashtagsHTML;
 
-      var recommendationBox = document.getElementById("recommendationBox");
-      recommendationBox.style.display = "block";
+      resultBox.style.display = "block";
     }
   </script>
 </body>
