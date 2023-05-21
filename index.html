@@ -1,62 +1,126 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      border: 1px solid white;
+      padding: 10px;
+      margin: 20px;
+    }
+    .result-box {
+      background-color: #FFFF66;
+      color: black;
+      margin-top: 20px;
+      padding: 10px;
+    }
+    #submitButton {
+      background-color: green;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
 <body>
 
-<h1>당신의 입맛 테스트</h1>
+<div class="box">
+  <img src="<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      border: 1px solid white;
+      padding: 10px;
+      margin: 20px;
+    }
+    .result-box {
+      background-color: #FFFF66;
+      color: black;
+      margin-top: 20px;
+      padding: 10px;
+    }
+    #submitButton {
+      background-color: green;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
 
-<form id="tasteTestForm">
-  <label for="favTaste">1. 당신이 가장 좋아하는 맛은?</label><br>
-  <select id="favTaste" name="favTaste">
-    <option value="신맛">1.신맛</option>
-    <option value="쓴맛">2.쓴맛</option>
-    <option value="단맛">3.단맛</option>
-    <option value="매운맛">4.매운맛</option>
-    <option value="짠맛">5.짠맛</option>
-  </select><br>
+<div class="box">
+  <img src="https://github.com/o2omindlink/mindlink/blob/main/00.jpeg" alt="Image" style="width:100%;"><br><br>
+  <h1>당신의 입맛 테스트</h1>
 
-  <label for="dislikeTaste">2. 당신이 가장 싫어하는 맛은?</label><br>
-  <select id="dislikeTaste" name="dislikeTaste">
-    <option value="신맛">1.신맛</option>
-    <option value="쓴맛">2.쓴맛</option>
-    <option value="단맛">3.단맛</option>
-    <option value="매운맛">4.매운맛</option>
-    <option value="짠맛">5.짠맛</option>
-  </select><br>
+  <form id="tasteTestForm">
+    <label for="favTaste">1. 당신이 가장 좋아하는 맛은?</label><br>
+    <select id="favTaste" name="favTaste">
+      <option value="신맛">1.신맛</option>
+      <option value="쓴맛">2.쓴맛</option>
+      <option value="단맛">3.단맛</option>
+      <option value="매운맛">4.매운맛</option>
+      <option value="짠맛">5.짠맛</option>
+    </select><br>
 
-  <label for="coffee">3. 당신은 블랙커피를 좋아하나요?</label><br>
-  <select id="coffee" name="coffee">
-    <option value="좋아요">좋아요</option>
-    <option value="싫어요">싫어요</option>
-  </select><br>
+    <label for="dislikeTaste">2. 당신이 가장 싫어하는 맛은?</label><br>
+    <select id="dislikeTaste" name="dislikeTaste">
+      <option value="신맛">1.신맛</option>
+      <option value="쓴맛">2.쓴맛</option>
+      <option value="단맛">3.단맛</option>
+      <option value="매운맛">4.매운맛</option>
+      <option value="짠맛">5.짠맛</option>
+    </select><br>
 
-  <label for="lemon">4. 당신은 레몬을 좋아하나요?</label><br>
-  <select id="lemon" name="lemon">
-    <option value="좋아요">좋아요</option>
-    <option value="싫어요">싫어요</option>
-  </select><br>
+    <label for="coffee">3. 당신은 블랙커피를 좋아하나요?</label><br>
+    <select id="coffee" name="coffee">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
 
-  <label for="plainFood">5. 당신은 싱거운 음식을 좋아하나요?</label><br>
-  <select id="plainFood" name="plainFood">
-    <option value="좋아요">좋아요</option>
-    <option value="싫어요">싫어요</option>
-  </select><br>
+    <label for="lemon">4. 당신은 레몬을 좋아하나요?</label><br>
+    <select id="lemon" name="lemon">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
 
-  <label for="spicyFood">6. 당신은 매운음식을 좋아하나요?</label><br>
-  <select id="spicyFood" name="spicyFood">
-    <option value="좋아요">좋아요</option>
-    <option value="싫어요">싫어요</option>
-  </select><br>
+    <label for="plainFood">5. 당신은 싱거운 음식을 좋아하나요?</label><br>
+    <select id="plainFood" name="plainFood">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
 
-  <label for="sweetFood">7. 당신은 달달한 음식을 좋아하나요?</label><br>
-  <select id="sweetFood" name="sweetFood">
-    <option value="좋아요">좋아요</option>
-    <option value="싫어요">싫어요</option>
-  </select><br>
+    <label for="spicyFood">6. 당신은 매운음식을 좋아하나요?</label><br>
+    <select id="spicyFood" name="spicyFood">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
 
-  <input type="button" value="제출" onclick="showResult()">
-</form>
+    <label for="sweetFood">7. 당신은 달달한 음식을 좋아하나요?</label><br>
+    <select id="sweetFood" name="sweetFood">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
 
-<div id="result"></div>
+    <input type="button" id="submitButton" value="나의 입맛 취향보기" onclick="showResult()">
+  </form>
+
+  <div id="result" class="result-box"></div>
+</div>
 
 <script>
 function showResult() {
@@ -69,13 +133,103 @@ function showResult() {
   var sweetFood = document.getElementById("sweetFood").value;
 
   var result = `
-    내가 가장 좋아하는 맛은 ${favTaste}입니다.<br>
-    내가 가장 싫어하는 맛은 ${dislikeTaste}입니다.<br>
-    저는 블랙커피를 ${coffee}합니다.<br>
-    저는 레몬을 ${lemon}합니다.<br>
-    저는 싱거운 음식을 ${plainFood}합니다.<br>
-    저는 매운음식을 ${spicyFood}합니다.<br>
-    저는 달달한 음식을 ${sweetFood}합니다.
+    <h2 style="font-size: 20px;">나의 입맛 취향</h2>
+    <p style="font-size: 15px;">
+      내가 가장 좋아하는 맛은 ${favTaste}입니다.<br>
+      내가 가장 싫어하는 맛은 ${dislikeTaste}입니다.<br>
+      저는 블랙커피를 ${coffee}<br>
+      저는 레몬을 ${lemon}<br>
+      저는 싱거운 음식을 ${plainFood}<br>
+      저는 매운음식을 ${spicyFood}<br>
+      저는 달달한 음식을 ${sweetFood}
+    </p>
+  `;
+
+  document.getElementById("result").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
+" alt="Image" style="width:100%;"><br><br>
+  <h1>당신의 입맛 테스트</h1>
+
+  <form id="tasteTestForm">
+    <label for="favTaste">1. 당신이 가장 좋아하는 맛은?</label><br>
+    <select id="favTaste" name="favTaste">
+      <option value="신맛">1.신맛</option>
+      <option value="쓴맛">2.쓴맛</option>
+      <option value="단맛">3.단맛</option>
+      <option value="매운맛">4.매운맛</option>
+      <option value="짠맛">5.짠맛</option>
+    </select><br>
+
+    <label for="dislikeTaste">2. 당신이 가장 싫어하는 맛은?</label><br>
+    <select id="dislikeTaste" name="dislikeTaste">
+      <option value="신맛">1.신맛</option>
+      <option value="쓴맛">2.쓴맛</option>
+      <option value="단맛">3.단맛</option>
+      <option value="매운맛">4.매운맛</option>
+      <option value="짠맛">5.짠맛</option>
+    </select><br>
+
+    <label for="coffee">3. 당신은 블랙커피를 좋아하나요?</label><br>
+    <select id="coffee" name="coffee">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
+
+    <label for="lemon">4. 당신은 레몬을 좋아하나요?</label><br>
+    <select id="lemon" name="lemon">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
+
+    <label for="plainFood">5. 당신은 싱거운 음식을 좋아하나요?</label><br>
+    <select id="plainFood" name="plainFood">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
+
+    <label for="spicyFood">6. 당신은 매운음식을 좋아하나요?</label><br>
+    <select id="spicyFood" name="spicyFood">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
+
+    <label for="sweetFood">7. 당신은 달달한 음식을 좋아하나요?</label><br>
+    <select id="sweetFood" name="sweetFood">
+      <option value="좋아합니다">좋아요</option>
+      <option value="싫어합니다">싫어요</option>
+    </select><br>
+
+    <input type="button" id="submitButton" value="나의 입맛 취향보기" onclick="showResult()">
+  </form>
+
+  <div id="result" class="result-box"></div>
+</div>
+
+<script>
+function showResult() {
+  var favTaste = document.getElementById("favTaste").value;
+  var dislikeTaste = document.getElementById("dislikeTaste").value;
+  var coffee = document.getElementById("coffee").value;
+  var lemon = document.getElementById("lemon").value;
+  var plainFood = document.getElementById("plainFood").value;
+  var spicyFood = document.getElementById("spicyFood").value;
+  var sweetFood = document.getElementById("sweetFood").value;
+
+  var result = `
+    <h2 style="font-size: 20px;">나의 입맛 취향</h2>
+    <p style="font-size: 15px;">
+      내가 가장 좋아하는 맛은 ${favTaste}입니다.<br>
+      내가 가장 싫어하는 맛은 ${dislikeTaste}입니다.<br>
+      저는 블랙커피를 ${coffee}<br>
+      저는 레몬을 ${lemon}<br>
+      저는 싱거운 음식을 ${plainFood}<br>
+      저는 매운음식을 ${spicyFood}<br>
+      저는 달달한 음식을 ${sweetFood}
+    </p>
   `;
 
   document.getElementById("result").innerHTML = result;
