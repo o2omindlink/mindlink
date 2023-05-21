@@ -56,9 +56,18 @@
       color: white;
       font-weight: bold;
       font-size: 23px;
+      text-align: center;
     }
     .padding-bottom {
       padding-bottom: 20px;
+    }
+    .copyright {
+      padding: 10px;
+      background-color: green;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+      text-align: center;
     }
   </style>
 </head>
@@ -66,6 +75,9 @@
 
 <body>
   <div class="container">
+
+    <div class="title-box">맛으로 보는 나의 성격과 취향</div>
+
     <form id="quizForm">
       <div class="question">
         <p>1. 당신이 가장 좋아하는 맛은?</p>
@@ -143,12 +155,10 @@
         <p class="bold" style="font-size: 23px;">나의 입맛 취향</p>
         <p id="resultText"></p>
       </div>
-
-      <div class="title-box">맛으로 보는 나의 성격과 취향</div>
-
-      <div class="padding-bottom"></div>
-      <p>본 프로그램의 저작권은 옥토에게 있습니다.</p>
     </form>
+
+    <div class="padding-bottom"></div>
+    <p class="copyright">본 프로그램의 저작권은 옥토에게 있습니다.</p>
   </div>
 
   <script>
@@ -165,7 +175,6 @@
       var sweetFood = document.querySelector('input[name="sweetFood"]:checked').value;
 
       var result = 
-        "<span style='font-size: 23px; font-weight: bold;'>나의 입맛 취향</span><br><br>" +
         "<span style='font-size: 15px; font-weight: bold;'>내가 가장 좋아하는 맛은 " + favTaste + ".</span><br>" +
         "<span style='font-size: 15px; font-weight: bold;'>내가 가장 싫어하는 맛은 " + dislikeTaste + ".</span><br>" +
         "<span style='font-size: 15px; font-weight: bold;'>저는 블랙커피를 " + blackCoffee + ".</span><br>" +
