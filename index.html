@@ -122,15 +122,17 @@
       <button type="button" id="submitButton" onclick="showResults()">성격과 취향 분석하기</button>
 
       <div id="resultBox" class="result-box" style="display: none; background-color: #FFFFCC;">
+        <div class="content" id="dislikeTasteResult" style="display: none;">
+          <hr> <!-- 추가된 선 -->
+          <p class="bold" style="font-size: 23px;">과한 오행에 따른 분석결과</p>
+          <div id="dislikeTasteContent"></div>
+          <div class="hashtags" id="dislikeTasteHashtags"></div>
+        </div>        
         <div class="content" id="favTasteResult" style="display: none;">
+          <hr> <!-- 추가된 선 -->
           <p class="bold" style="font-size: 23px;">부족한 오행에 따른 분석결과</p>
           <div id="favTasteContent"></div>
           <div class="hashtags" id="favTasteHashtags"></div>
-        </div>
-        <div class="content" id="dislikeTasteResult" style="display: none;">
-          <p class="bold" style="font-size: 23px;"> 과한 오행에 따른 분석결과</p>
-          <div id="dislikeTasteContent"></div>
-          <div class="hashtags" id="dislikeTasteHashtags"></div>
         </div>
       </div>
     </form>
