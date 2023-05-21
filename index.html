@@ -65,28 +65,24 @@
       padding-bottom: 20px;
     }
     .content {
-      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+    .hashtags {
+      margin-top: 10px;
     }
     .hashtags span {
       display: inline-block;
-      margin-right: 5px;
-    }
-    .hashtags span::after {
-      content: ",";
-    }
-    .hashtags span:last-child::after {
-      content: "";
-    }
-    .footer {
-      padding: 10px;
       background-color: green;
       color: white;
-      font-weight: bold;
+      padding: 5px 10px;
+      margin-right: 5px;
       font-size: 13px;
-      text-align: center;
+      border-radius: 5px;
     }
   </style>
 </head>
+<body>
+
 <body>
   <div class="container">
     <div class="title-box">맛으로 보는 나의 성격과 취향</div>
@@ -120,27 +116,24 @@
         <label for="dislikeTaste5">짠맛</label>
       </div>
 
+
       <div class="spacer"></div>
 
-      <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향 보기</button>
+      <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향보기</button>
 
-      <div id="resultBox" class="result-box" style="display: none;">
-        <p class="bold">나의 입맛 취향</p>
-        <div id="favTasteResult" class="content" style="display: none;">
-          <p class="bold">오행이 부족한 경우</p>
-          <p id="favTasteContent"></p>
-          <p class="hashtags" id="favTasteHashtags"></p>
+      <div id="resultBox" class="result-box" style="display: none; background-color: #FFFFCC;">
+        <div class="content" id="favTasteResult" style="display: none;">
+          <p class="bold" style="font-size: 23px;">당신의 오행이 부족한 맛</p>
+          <div id="favTasteContent"></div>
+          <div class="hashtags" id="favTasteHashtags"></div>
         </div>
-        <div id="dislikeTasteResult" class="content" style="display: none;">
-          <p class="bold">오행이 과한 경우</p>
-          <p id="dislikeTasteContent"></p>
-          <p class="hashtags" id="dislikeTasteHashtags"></p>
+        <div class="content" id="dislikeTasteResult" style="display: none;">
+          <p class="bold" style="font-size: 23px;">당신의 오행이 과한 맛</p>
+          <div id="dislikeTasteContent"></div>
+          <div class="hashtags" id="dislikeTasteHashtags"></div>
         </div>
       </div>
     </form>
-
-    <div class="padding-bottom"></div>
-    <div class="footer">본 프로그램의 저작권은 옥토에게 있습니다.</div>
   </div>
 
   <script>
@@ -160,71 +153,71 @@
         "신맛": {
           "favTaste": {
             "content": [
-              "당신은 오행에서 목이 부족한 사람입니다."
+              "당신은 오행에서 신맛을 좋아하지만 부족한 편입니다."
             ],
             "hashtags": ["#과일", "#김치", "#토마토", "#식초", "#초록색", "#나무", "#간질환"]
           },
           "dislikeTaste": {
             "content": [
-              "당신은 오행에서 화가 많은 사람입니다."
+              "당신은 오행에서 신맛을 싫어하지만 과한 편입니다."
             ],
-            "hashtags": ["#쓴맛", "#쑥", "#당귀", "#미나리", "#카레", "#차", "#커피", "#황토색", "#흙", "#혈관질환"]
+            "hashtags": ["#과일", "#김치", "#토마토", "#식초", "#초록색", "#나무", "#간질환"]
           }
         },
         "쓴맛": {
           "favTaste": {
             "content": [
-              "당신은 오행에서 화가 부족한 사람입니다."
+              "당신은 오행에서 쓴맛을 좋아하지만 부족한 편입니다."
             ],
-            "hashtags": ["#신맛", "#과일", "#김치", "#토마토", "#식초", "#초록색", "#나무", "#간질환"]
+            "hashtags": ["#쑥", "#당귀", "#미나리", "#카레", "#차", "#커피", "#황토색", "#흙", "#혈관질환"]
           },
           "dislikeTaste": {
             "content": [
-              "당신은 오행에서 금이 많은 사람입니다."
+              "당신은 오행에서 쓴맛을 싫어하지만 과한 편입니다."
             ],
-            "hashtags": ["#매운맛", "#화이트색", "#골드색", "#은색", "#금속", "#폐질환"]
+            "hashtags": ["#쑥", "#당귀", "#미나리", "#카레", "#차", "#커피", "#황토색", "#흙", "#혈관질환"]
           }
         },
         "단맛": {
           "favTaste": {
             "content": [
-              "당신은 오행에서 토가 부족한 사람입니다."
+              "당신은 오행에서 단맛을 좋아하지만 부족한 편입니다."
             ],
             "hashtags": ["#황토색", "#흙", "#소화기질환"]
           },
           "dislikeTaste": {
             "content": [
-              "당신은 오행에서 목이 많은 사람입니다."
+              "당신은 오행에서 단맛을 싫어하지만 과한 편입니다."
             ],
-            "hashtags": ["#신맛", "#과일", "#김치", "#토마토", "#식초", "#초록색", "#나무", "#간질환"]
+            "hashtags": ["#황토색", "#흙", "#소화기질환"]
           }
         },
         "매운맛": {
           "favTaste": {
             "content": [
-              "당신은 오행에서 금이 부족한 사람입니다."
+              "당신은 오행에서 매운맛을 좋아하지만 부족한 편입니다."
             ],
-            "hashtags": ["#매운맛", "#화이트색", "#골드색", "#은색", "#금속", "#폐질환"]
+            "hashtags": ["#화이트색", "#골드색", "#은색", "#금속", "#폐질환"]
           },
           "dislikeTaste": {
             "content": [
-              "당신은 오행에서 수가 많은 사람입니다."
+              "당신은 오행에서 매운맛을 싫어하지만 과한 편입니다."
             ],
-            "hashtags": ["#신맛", "#미역", "#다시마", "#해조류", "#흰색", "#꽃과관련된활동", "#신장질환"]
+            "hashtags": ["#화이트색", "#골드색", "#은색", "#금속", "#폐질환"]
           }
         },
         "짠맛": {
           "favTaste": {
             "content": [
-              "당신은 오행에서 수가 부족한 사람입니다."
+              "당신은 오행에서 짠맛을 좋아하지만 부족한 편입니다."
             ],
-            "hashtags": ["#짠맛", "#해산물", "#새우젓", "#간장", "#검정색", "#파란색", "#수영", "#신장방광질환"]
+            "hashtags": ["#미역", "#다시마", "#해조류", "#흰색", "#꽃과관련된활동", "#신장질환"]
           },
           "dislikeTaste": {
             "content": [
-              "당신은 오행에서 토가 많은 사람입니다."
+              "당신은 오행에서 짠맛을 싫어하지만 과한 편입니다."
             ],
-            "hashtags": ["#단맛", "#황토색", "#흙", "#소화기질환"]
+            "hashtags": ["#미역", "#다시마", "#해조류", "#흰색", "#꽃과관련된활동", "#신장질환"]
           }
         }
       };
@@ -232,14 +225,23 @@
       var favTasteRecommendation = recommendations[favTaste]["favTaste"];
       var dislikeTasteRecommendation = recommendations[dislikeTaste]["dislikeTaste"];
 
-      favTasteContent.innerHTML = favTasteRecommendation["content"].join("");
-      dislikeTasteContent.innerHTML = dislikeTasteRecommendation["content"].join("");
+      var favTasteContentHTML = "";
+      for (var i = 0; i < favTasteRecommendation["content"].length; i++) {
+        favTasteContentHTML += "<p>" + favTasteRecommendation["content"][i] + "</p>";
+      }
+      favTasteContent.innerHTML = favTasteContentHTML;
 
       var favTasteHashtagsHTML = "";
       for (var i = 0; i < favTasteRecommendation["hashtags"].length; i++) {
         favTasteHashtagsHTML += "<span>" + favTasteRecommendation["hashtags"][i] + "</span>";
       }
       favTasteHashtags.innerHTML = "해시태그: " + favTasteHashtagsHTML;
+
+      var dislikeTasteContentHTML = "";
+      for (var i = 0; i < dislikeTasteRecommendation["content"].length; i++) {
+        dislikeTasteContentHTML += "<p>" + dislikeTasteRecommendation["content"][i] + "</p>";
+      }
+      dislikeTasteContent.innerHTML = dislikeTasteContentHTML;
 
       var dislikeTasteHashtagsHTML = "";
       for (var i = 0; i < dislikeTasteRecommendation["hashtags"].length; i++) {
