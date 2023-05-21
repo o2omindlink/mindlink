@@ -139,8 +139,24 @@
       var quizForm = document.getElementById("quizForm");
       var resultBox = document.getElementById("resultBox");
       var resultText = document.getElementById("resultText");
-      // Process the form answers here and update resultText.innerText
+      var favTaste = document.querySelector('input[name="favTaste"]:checked').value;
+      var dislikeTaste = document.querySelector('input[name="dislikeTaste"]:checked').value;
+      var coffee = document.querySelector('input[name="coffee"]:checked').value;
+      var lemon = document.querySelector('input[name="lemon"]:checked').value;
+      var lightFood = document.querySelector('input[name="lightFood"]:checked').value;
+      var spicyFood = document.querySelector('input[name="spicyFood"]:checked').value;
+      var sweetFood = document.querySelector('input[name="sweetFood"]:checked').value;
 
+      var result = "나의 입맛 취향<br><br>" +
+        "내가 가장 좋아하는 맛은 " + favTaste + ".<br>" +
+        "내가 가장 싫어하는 맛은 " + dislikeTaste + ".<br>" +
+        "저는 블랙커피를 " + coffee + ".<br>" +
+        "저는 레몬을 " + lemon + ".<br>" +
+        "저는 싱거운 음식을 " + lightFood + ".<br>" +
+        "저는 매운음식을 " + spicyFood + ".<br>" +
+        "저는 달달한 음식을 " + sweetFood + ".";
+
+      document.getElementById("result").innerHTML = result;
       resultBox.style.display = "block";
     }
   </script>
