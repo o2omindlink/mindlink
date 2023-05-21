@@ -44,7 +44,11 @@
     .bold {
       font-weight: bold;
       text-align: center;
-      font-size: 20px;
+      font-size: 15px;
+    }
+    #resultText {
+      font-weight: bold;
+      font-size: 23px;
     }
   </style>
 </head>
@@ -127,7 +131,7 @@
 
       <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향보기</button>
 
-      <div id="resultBox" class="result-box" style="display: none;">
+      <div id="resultBox" class="result-box" style="display: none; background-color: #FFFFCC;">
         <p class="bold">나의 입맛 취향</p>
         <p id="resultText"></p>
       </div>
@@ -147,14 +151,14 @@
       var spicyFood = document.querySelector('input[name="spicyFood"]:checked').value;
       var sweetFood = document.querySelector('input[name="sweetFood"]:checked').value;
 
-      var result = "나의 입맛 취향<br><br>" +
-        "내가 가장 좋아하는 맛은 " + favTaste + ".<br>" +
-        "내가 가장 싫어하는 맛은 " + dislikeTaste + ".<br>" +
-        "저는 블랙커피를 " + blackCoffee + ".<br>" +
-        "저는 레몬을 " + lemon + ".<br>" +
-        "저는 싱거운 음식을 " + lightFood + ".<br>" +
-        "저는 매운음식을 " + spicyFood + ".<br>" +
-        "저는 달달한 음식을 " + sweetFood + ".";
+      var result = "<span style='font-size: 23px; font-weight: bold;'>나의 입맛 취향</span><br><br>" +
+        "<span style='font-size: 15px; font-weight: bold;'>내가 가장 좋아하는 맛은 " + favTaste + ".</span><br>" +
+        "<span style='font-size: 15px; font-weight: bold;'>내가 가장 싫어하는 맛은 " + dislikeTaste + ".</span><br>" +
+        "<span style='font-size: 15px; font-weight: bold;'>저는 블랙커피를 " + blackCoffee + ".</span><br>" +
+        "<span style='font-size: 15px; font-weight: bold;'>저는 레몬을 " + lemon + ".</span><br>" +
+        "<span style='font-size: 15px; font-weight: bold;'>저는 싱거운 음식을 " + lightFood + ".</span><br>" +
+        "<span style='font-size: 15px; font-weight: bold;'>저는 매운음식을 " + spicyFood + ".</span><br>" +
+        "<span style='font-size: 15px; font-weight: bold;'>저는 달달한 음식을 " + sweetFood + ".</span>";
 
       resultText.innerHTML = result;
       resultBox.style.display = "block";
