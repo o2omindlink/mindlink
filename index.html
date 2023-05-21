@@ -1,193 +1,64 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: black;
-      color: white;
-      padding: 0 10px;
-    }
-    .container {
-      padding-top: 10px;
-    }
-    .question {
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid white;
-      background-color: #8B0000;  /* Dark red */
-    }
-    .question p {
-      margin: 0;
-      line-height: 1.1;
-    }
-    .question input[type=radio] {
-      margin-right: 5px;
-    }
-    .spacer {
-      height: 30px;
-    }
-    button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 23px;
-      margin-bottom: 20px;
-      background-color: green;
-      color: white;
-    }
-    .result-box {
-      padding: 10px;
-      border: 1px solid white;
-      background-color: #FFFFE0;
-      color: black;
-      text-align: center;
-    }
-    .bold {
-      font-weight: bold;
-      font-size: 15px;
-    }
-    #resultText {
-      font-weight: bold;
-      font-size: 23px;
-    }
-    .title-box {
-      padding: 10px;
-      background-color: green;
-      color: white;
-      font-weight: bold;
-      font-size: 23px;
-      text-align: center;
-    }
-    .padding-bottom {
-      padding-bottom: 20px;
-    }
-    .copyright {
-      padding: 10px;
-      background-color: green;
-      color: white;
-      font-weight: bold;
-      font-size: 13px;
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>오행과 MBTI</title>
+    <script>
+        function showPersonality(personality) {
+            var interpretations = {
+                "목의 성향인 사람": {
+                    "interpretation": "당신은 목의 성향을 가진 사람입니다. 목이 무성한 사람들: 목은 성장, 발전, 창조성을 상징합니다. 이러한 성향은 MBTI에서 ENTP (혁신적인 발명가)와 ENFP (열정적인 영감가)와 같은 유형과 일치합니다. 이들은 새로운 아이디어와 가능성에 대한 탐구를 즐기는 것으로, 이는 나무(목)가 지속적으로 성장하고 발전하는 특성과 유사합니다. 목의 에너지가 풍부한 환경에서 머무는 것은 이들에게 매우 효과적입니다. 숲이나 나무가 많은 곳, 조용하고 평온한 공원이나 산책로는 목의 에너지를 고조시키고, 이는 그들의 집중력을 향상시키고 논리적인 사고를 통한 문제 해결 능력을 강화시킵니다.",
+                    "hashtags": ["#ENFP", "#ENTP", "#성장", "#발전", "#창조성", "#조용한공원", "#산책로"]
+                },
+                "화의 성향인 사람": {
+                    "interpretation": "당신은 화의 성향을 가진 사람입니다. 화가 풍부한 사람들: 화는 활동, 변화, 열정을 상징합니다. 이러한 성향은 MBTI에서 ESTP (현실 주의적인 도전가)와 ESFP (자유로운 연예인)와 같은 유형과 관련이 있습니다. 이들은 현재를 즐기고 다양한 경험을 추구하는 경향이 있는데, 이는 화의 변동성과 활발함을 반영합니다. 화의 에너지는 열정, 창조성, 통찰력을 촉진하는데 중요한 역할을 합니다. 따라서 화려한 색채, 온화한 기후, 그리고 사람들과의 상호작용이 빈번한 환경은 그들에게 가장 적합합니다.",
+                    "hashtags": ["#ESTP", "#ESFP", "#활동적", "#변화를추구", "#열정적", "#화려한색채", "#온화한기후"]
+                },
+                "토의 성향인 사람": {
+                    "interpretation": "당신은 토의 성향을 가진 사람입니다. 토가 풍부한 사람들: 토는 안정성, 신뢰성, 현실성을 상징합니다. 이러한 성향은 MBTI에서 ISTJ (의무감이 강한 관리자)와 ISFJ (자비로운 수호자)와 같은 유형과 일치합니다. 이들은 체계적이고 신뢰할 수 있으며 현실적인 성향을 가지고 있는데, 이는 흙(토)의 안정성과 신뢰성, 현실감을 반영하는 특성과 유사합니다. 토의 에너지는 물리적 안정감과 실제 생활의 기반을 제공하며, 자연 환경, 물리적 활동, 그리고 노동 중심의 업무가 그들에게 가장 잘 맞습니다.",
+                    "hashtags": ["#ISTJ", "#ISFJ", "#안정적", "#신뢰할수있는", "#현실적", "#자연환경", "#물리적활동"]
+                },
+                "금의 성향인 사람": {
+                    "interpretation": "당신은 금의 성향을 가진 사람입니다. 금이 풍부한 사람들: 금은 명확함, 결단력, 독립성을 상징합니다. 이러한 성향은 MBTI에서 ENTJ (의지가 강한 사색가)와 ESTJ (실용적인 관리자)와 같은 유형과 관련이 있습니다. 이들은 결정적이며 조직적인 성향을 가지고 있고, 이는 금의 명확함과 결단력을 반영하는 특성과 일치합니다. 금의 에너지는 명확성, 효율성, 그리고 구조를 제공하며, 그들에게는 조직적인 환경, 체계적인 일상, 그리고 목표 지향적인 업무가 가장 잘 맞습니다.",
+                    "hashtags": ["#ENTJ", "#ESTJ", "#명확함", "#결단력", "#독립적", "#조직적환경", "#체계적일상", "#목표지향적업무"]
+                },
+                "수의 성향인 사람": {
+                    "interpretation": "당신은 수의 성향을 가진 사람입니다. 수가 풍부한 사람들: 수는 유연성, 적응성, 감성을 상징합니다. 이러한 성향은 MBTI에서 INFP (열정적인 중재자)와 ISFP (감각적인 예술가)와 같은 유형과 일치합니다. 이들은 감성적이며 이해력이 깊고 공감 능력이 뛰어난 특성을 가지고 있습니다. 이는 물(수)의 유연성과 적응성, 그리고 감성적인 특성을 반영합니다. 수의 에너지는 독창성, 통찰력, 그리고 풍부한 상상력을 촉진하며, 그들에게는 조용하고 평온한 환경, 깊이 있는 사색을 할 수 있는 공간, 그리고 창의적인 생각이 필요한 업무가 가장 잘 맞습니다. 이러한 성향을 가진 사람들은 개인적인 공간에서 깊이 있는 사색을 통해 창의적인 아이디어를 발전시키는 것을 선호합니다.",
+                    "hashtags": ["#INFP", "#ISFP", "#유연성", "#적응성", "#감성적", "#조용한환경", "#깊은사색", "#창의적사고"]
+                }
+            };
+
+            var interpretation = interpretations[personality]["interpretation"];
+            var hashtags = interpretations[personality]["hashtags"];
+
+            document.getElementById("interpretation").innerHTML = interpretation;
+
+            var hashtagsHTML = "";
+            for (var i = 0; i < hashtags.length; i++) {
+                hashtagsHTML += "<span>" + hashtags[i] + "</span> ";
+            }
+            document.getElementById("hashtags").innerHTML = "해시태그: " + hashtagsHTML;
+        }
+    </script>
 </head>
-<body>
 
 <body>
-  <div class="container">
-    <div class="title-box">맛으로 보는 나의 성격과 취향</div>
+    <h2>오행과 MBTI</h2>
 
-    <form id="quizForm">
-      <div class="question">
-        <p>1. 당신이 가장 좋아하는 맛은?</p>
-        <input type="radio" id="favTaste1" name="favTaste" value="신맛">
-        <label for="favTaste1">신맛</label>
-        <input type="radio" id="favTaste2" name="favTaste" value="쓴맛">
-        <label for="favTaste2">쓴맛</label>
-        <input type="radio" id="favTaste3" name="favTaste" value="단맛">
-        <label for="favTaste3">단맛</label>
-        <input type="radio" id="favTaste4" name="favTaste" value="매운맛">
-        <label for="favTaste4">매운맛</label>
-        <input type="radio" id="favTaste5" name="favTaste" value="짠맛">
-        <label for="favTaste5">짠맛</label>
-      </div>
+    <h3>선택해주세요:</h3>
+    <button onclick="showPersonality('목의 성향인 사람')">목의 성향인 사람</button>
+    <button onclick="showPersonality('화의 성향인 사람')">화의 성향인 사람</button>
+    <button onclick="showPersonality('토의 성향인 사람')">토의 성향인 사람</button>
+    <button onclick="showPersonality('금의 성향인 사람')">금의 성향인 사람</button>
+    <button onclick="showPersonality('수의 성향인 사람')">수의 성향인 사람</button>
 
-      <div class="question">
-        <p>2. 당신이 가장 싫어하는 맛은?</p>
-        <input type="radio" id="dislikeTaste1" name="dislikeTaste" value="신맛">
-        <label for="dislikeTaste1">신맛</label>
-        <input type="radio" id="dislikeTaste2" name="dislikeTaste" value="쓴맛">
-        <label for="dislikeTaste2">쓴맛</label>
-        <input type="radio" id="dislikeTaste3" name="dislikeTaste" value="단맛">
-        <label for="dislikeTaste3">단맛</label>
-        <input type="radio" id="dislikeTaste4" name="dislikeTaste" value="매운맛">
-        <label for="dislikeTaste4">매운맛</label>
-        <input type="radio" id="dislikeTaste5" name="dislikeTaste" value="짠맛">
-        <label for="dislikeTaste5">짠맛</label>
-      </div>
+    <h3>해석:</h3>
+    <p id="interpretation"></p>
 
-      <div class="question">
-        <p>3. 당신은 블랙커피를 좋아하나요?</p>
-        <input type="radio" id="blackCoffee1" name="blackCoffee" value="좋아합니다">
-        <label for="blackCoffee1">좋아합니다</label>
-        <input type="radio" id="blackCoffee2" name="blackCoffee" value="싫어합니다">
-        <label for="blackCoffee2">싫어합니다</label>
-      </div>
+    <h3>해시태그:</h3>
+    <p id="hashtags"></p>
 
-      <div class="question">
-        <p>4. 당신은 레몬을 좋아하나요?</p>
-        <input type="radio" id="lemon1" name="lemon" value="좋아합니다">
-        <label for="lemon1">좋아합니다</label>
-        <input type="radio" id="lemon2" name="lemon" value="싫어합니다">
-        <label for="lemon2">싫어합니다</label>
-      </div>
-
-      <div class="question">
-        <p>5. 당신은 싱거운 음식을 좋아하나요?</p>
-        <input type="radio" id="lightFood1" name="lightFood" value="좋아합니다">
-        <label for="lightFood1">좋아합니다</label>
-        <input type="radio" id="lightFood2" name="lightFood" value="싫어합니다">
-        <label for="lightFood2">싫어합니다</label>
-      </div>
-
-      <div class="question">
-        <p>6. 당신은 매운 음식을 좋아하나요?</p>
-        <input type="radio" id="spicyFood1" name="spicyFood" value="좋아합니다">
-        <label for="spicyFood1">좋아합니다</label>
-        <input type="radio" id="spicyFood2" name="spicyFood" value="싫어합니다">
-        <label for="spicyFood2">싫어합니다</label>
-      </div>
-
-      <div class="question">
-        <p>7. 당신은 달달한 음식을 좋아하나요?</p>
-        <input type="radio" id="sweetFood1" name="sweetFood" value="좋아합니다">
-        <label for="sweetFood1">좋아합니다</label>
-        <input type="radio" id="sweetFood2" name="sweetFood" value="싫어합니다">
-        <label for="sweetFood2">싫어합니다</label>
-      </div>
-
-      <div class="spacer"></div>
-
-      <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향보기</button>
-
-      <div id="resultBox" class="result-box" style="display: none; background-color: #FFFFCC;">
-        <p class="bold" style="font-size: 23px;">나의 입맛 취향</p>
-        <p id="resultText"></p>
-      </div>
-    </form>
-
-    <div class="padding-bottom"></div>
-    <p class="copyright">본 프로그램의 저작권은 옥토에게 있습니다.</p>
-  </div>
-
-  <script>
-    function showResults() {
-      var quizForm = document.getElementById("quizForm");
-      var resultBox = document.getElementById("resultBox");
-      var resultText = document.getElementById("resultText");
-      var favTaste = document.querySelector('input[name="favTaste"]:checked').value;
-      var dislikeTaste = document.querySelector('input[name="dislikeTaste"]:checked').value;
-      var blackCoffee = document.querySelector('input[name="blackCoffee"]:checked').value;
-      var lemon = document.querySelector('input[name="lemon"]:checked').value;
-      var lightFood = document.querySelector('input[name="lightFood"]:checked').value;
-      var spicyFood = document.querySelector('input[name="spicyFood"]:checked').value;
-      var sweetFood = document.querySelector('input[name="sweetFood"]:checked').value;
-
-      var result = 
-        "<span style='font-size: 15px; font-weight: bold;'>내가 가장 좋아하는 맛은 " + favTaste + ".</span><br>" +
-        "<span style='font-size: 15px; font-weight: bold;'>내가 가장 싫어하는 맛은 " + dislikeTaste + ".</span><br>" +
-        "<span style='font-size: 15px; font-weight: bold;'>저는 블랙커피를 " + blackCoffee + ".</span><br>" +
-        "<span style='font-size: 15px; font-weight: bold;'>저는 레몬을 " + lemon + ".</span><br>" +
-        "<span style='font-size: 15px; font-weight: bold;'>저는 싱거운 음식을 " + lightFood + ".</span><br>" +
-        "<span style='font-size: 15px; font-weight: bold;'>저는 매운음식을 " + spicyFood + ".</span><br>" +
-        "<span style='font-size: 15px; font-weight: bold;'>저는 달달한 음식을 " + sweetFood + ".</span>";
-
-      resultText.innerHTML = result;
-      resultBox.style.display = "block";
-    }
-  </script>
 </body>
+
 </html>
