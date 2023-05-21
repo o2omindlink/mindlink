@@ -40,10 +40,10 @@
       border: 1px solid white;
       background-color: #FFFFE0;
       color: black;
+      text-align: center;
     }
     .bold {
       font-weight: bold;
-      text-align: center;
       font-size: 15px;
     }
     #resultText {
@@ -56,7 +56,7 @@
 
 <body>
   <div class="container">
-    <img src="https://github.com/o2omindlink/mindlink/blob/main/00.jpeg" alt="Image">
+    <img src="https://github.com/o2omindlink/mindlink/blob/main/11.jpeg" alt="Image">
 
     <form id="quizForm">
       <div class="question">
@@ -132,7 +132,7 @@
       <button type="button" id="submitButton" onclick="showResults()">나의 입맛 취향보기</button>
 
       <div id="resultBox" class="result-box" style="display: none; background-color: #FFFFCC;">
-        <p class="bold">나의 입맛 취향</p>
+        <p class="bold" style="font-size: 25px; color: blue;">나의 입맛 취향</p>
         <p id="resultText"></p>
       </div>
     </form>
@@ -151,7 +151,7 @@
       var spicyFood = document.querySelector('input[name="spicyFood"]:checked').value;
       var sweetFood = document.querySelector('input[name="sweetFood"]:checked').value;
 
-      var result = "<span style='font-size: 23px; font-weight: bold;'>나의 입맛 취향</span><br><br>" +
+      var result = 
         "<span style='font-size: 15px; font-weight: bold;'>내가 가장 좋아하는 맛은 " + favTaste + ".</span><br>" +
         "<span style='font-size: 15px; font-weight: bold;'>내가 가장 싫어하는 맛은 " + dislikeTaste + ".</span><br>" +
         "<span style='font-size: 15px; font-weight: bold;'>저는 블랙커피를 " + blackCoffee + ".</span><br>" +
